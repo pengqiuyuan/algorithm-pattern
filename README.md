@@ -1,6 +1,8 @@
-# 算法模板
+# Introduction
 
-![来刷题了](https://img.fuiboom.com/img/title.png)
+
+
+![&#x6765;&#x5237;&#x9898;&#x4E86;](https://img.fuiboom.com/img/title.png)
 
 算法模板，最科学的刷题方式，最快速的刷题路径，一个月从入门到 offer，你值得拥有~
 
@@ -16,28 +18,28 @@
 
 ### 入门篇 🐶
 
-- [go 语言入门](introduction/golang.md)
-- [算法快速入门](introduction/quickstart.md)
+* [go 语言入门](ru-men-pian/golang.md)
+* [算法快速入门](ru-men-pian/quickstart.md)
 
 ### 数据结构篇 🐰
 
-- [二叉树](data_structure/binary_tree.md)
-- [链表](data_structure/linked_list.md)
-- [栈和队列](data_structure/stack_queue.md)
-- [二进制](data_structure/binary_op.md)
+* [二叉树](shu-ju-jie-gou-pian/binary_tree.md)
+* [链表](shu-ju-jie-gou-pian/linked_list.md)
+* [栈和队列](shu-ju-jie-gou-pian/stack_queue.md)
+* [二进制](shu-ju-jie-gou-pian/binary_op.md)
 
 ### 基础算法篇 🐮
 
-- [二分搜索](basic_algorithm/binary_search.md)
-- [排序算法](basic_algorithm/sort.md)
-- [动态规划](basic_algorithm/dp.md)
+* [二分搜索](ji-chu-suan-fa-pian/binary_search.md)
+* [排序算法](ji-chu-suan-fa-pian/sort.md)
+* [动态规划](ji-chu-suan-fa-pian/dp.md)
 
 ### 算法思维 🦁
 
-- [递归思维](advanced_algorithm/recursion.md)
-- [滑动窗口思想](advanced_algorithm/slide_window.md)
-- [二叉搜索树](advanced_algorithm/binary_search_tree.md)
-- [回溯法](advanced_algorithm/backtrack.md)
+* [递归思维](suan-fa-si-wei/recursion.md)
+* [滑动窗口思想](suan-fa-si-wei/slide_window.md)
+* [二叉搜索树](suan-fa-si-wei/binary_search_tree.md)
+* [回溯法](suan-fa-si-wei/backtrack.md)
 
 ## 心得体会
 
@@ -45,11 +47,11 @@
 
 刷完这些练习题，基本对数据结构和算法有自己的认识体会，基本大部分面试题都能写得出来，国内的 BAT、TMD 应该都不是问题
 
-从 4 月份找工作开始，从 0 开始刷 LeetCode，中间大概花了一个半月(6 周)左右时间刷完 240 题。
+从 4 月份找工作开始，从 0 开始刷 LeetCode，中间大概花了一个半月\(6 周\)左右时间刷完 240 题。
 
-![一个半月刷完240题](https://img.fuiboom.com/img/leetcode_time.png)
+![&#x4E00;&#x4E2A;&#x534A;&#x6708;&#x5237;&#x5B8C;240&#x9898;](https://img.fuiboom.com/img/leetcode_time.png)
 
-![刷题记录](https://img.fuiboom.com/img/leetcode_record.png)
+![&#x5237;&#x9898;&#x8BB0;&#x5F55;](https://img.fuiboom.com/img/leetcode_record.png)
 
 开始刷题时，确实是无从下手，因为从序号开始刷，刷到几道题就遇到 hard 的题型，会卡住很久，后面去评论区看别人怎么刷题，也去 Google 搜索最好的刷题方式，发现按题型刷题会舒服很多，基本一个类型的题目，一天能做很多，慢慢刷题也不再枯燥，做起来也很有意思，最后也收到不错的 offer（最后去了宇宙系）。
 
@@ -61,15 +63,15 @@
 
 1、 [algorithm-pattern 练习题](https://greyireland.gitbook.io/algorithm-pattern/)
 
-![练习题](https://img.fuiboom.com/img/repo_practice.png)
+![&#x7EC3;&#x4E60;&#x9898;](https://img.fuiboom.com/img/repo_practice.png)
 
 2、 [LeetCode 卡片](https://leetcode-cn.com/explore/)
 
-![探索卡片](https://img.fuiboom.com/img/leetcode_explore.png)
+![&#x63A2;&#x7D22;&#x5361;&#x7247;](https://img.fuiboom.com/img/leetcode_explore.png)
 
 3、 [剑指 offer](https://leetcode-cn.com/problemset/lcof/)
 
-![剑指offer](https://img.fuiboom.com/img/leetcode_jzoffer.png)
+![&#x5251;&#x6307;offer](https://img.fuiboom.com/img/leetcode_jzoffer.png)
 
 刷题时间可以合理分配，如果打算准备面试了，建议前面两部分 一个半月 （6 周）时间刷完，最后剑指 offer 半个月刷完，边刷可以边投简历进行面试，遇到不会的不用着急，往模板上套就对了~
 
@@ -86,3 +88,4 @@
 持续更新中，觉得还可以的话点个 **star** 收藏呀 ⭐️~
 
 【 Github 】[https://github.com/greyireland/algorithm-pattern](https://github.com/greyireland/algorithm-pattern) ⭐️
+

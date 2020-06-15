@@ -83,8 +83,7 @@ func (this *MinStack) GetMin() int {
 
 [evaluate-reverse-polish-notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
 
-> **波兰表达式计算** > **输入:** ["2", "1", "+", "3", "*"] > **输出:** 9
-> **解释:** ((2 + 1) \* 3) = 9
+> **波兰表达式计算** &gt; **输入:** \["2", "1", "+", "3", "_"\] &gt; **输出:** 9 **解释:** \(\(2 + 1\) \_ 3\) = 9
 
 思路：通过栈保存原来的元素，遇到表达式弹出运算，再推入结果，重复这个过程
 
@@ -128,51 +127,48 @@ func evalRPN(tokens []string) int {
 
 [decode-string](https://leetcode-cn.com/problems/decode-string/)
 
-> 给定一个经过编码的字符串，返回它解码后的字符串。
-> s = "3[a]2[bc]", 返回 "aaabcbc".
-> s = "3[a2[c]]", 返回 "accaccacc".
-> s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
+> 给定一个经过编码的字符串，返回它解码后的字符串。 s = "3\[a\]2\[bc\]", 返回 "aaabcbc". s = "3\[a2\[c\]\]", 返回 "accaccacc". s = "2\[abc\]3\[cd\]ef", 返回 "abcabccdcdcdef".
 
 思路：通过栈辅助进行操作
 
 ```go
 func decodeString(s string) string {
-	if len(s) == 0 {
-		return ""
-	}
-	stack := make([]byte, 0)
-	for i := 0; i < len(s); i++ {
-		switch s[i] {
-		case ']':
-			temp := make([]byte, 0)
-			for len(stack) != 0 && stack[len(stack)-1] != '[' {
-				v := stack[len(stack)-1]
-				stack = stack[:len(stack)-1]
-				temp = append(temp, v)
-			}
-			// pop '['
-			stack = stack[:len(stack)-1]
-			// pop num
-			idx := 1
-			for len(stack) >= idx && stack[len(stack)-idx] >= '0' && stack[len(stack)-idx] <= '9' {
-				idx++
-			}
+    if len(s) == 0 {
+        return ""
+    }
+    stack := make([]byte, 0)
+    for i := 0; i < len(s); i++ {
+        switch s[i] {
+        case ']':
+            temp := make([]byte, 0)
+            for len(stack) != 0 && stack[len(stack)-1] != '[' {
+                v := stack[len(stack)-1]
+                stack = stack[:len(stack)-1]
+                temp = append(temp, v)
+            }
+            // pop '['
+            stack = stack[:len(stack)-1]
+            // pop num
+            idx := 1
+            for len(stack) >= idx && stack[len(stack)-idx] >= '0' && stack[len(stack)-idx] <= '9' {
+                idx++
+            }
             // 注意索引边界
-			num := stack[len(stack)-idx+1:]
-			stack = stack[:len(stack)-idx+1]
-			count, _ := strconv.Atoi(string(num))
-			for j := 0; j < count; j++ {
+            num := stack[len(stack)-idx+1:]
+            stack = stack[:len(stack)-idx+1]
+            count, _ := strconv.Atoi(string(num))
+            for j := 0; j < count; j++ {
                 // 把字符正向放回到栈里面
-				for j := len(temp) - 1; j >= 0; j-- {
-					stack = append(stack, temp[j])
-				}
-			}
-		default:
-			stack = append(stack, s[i])
+                for j := len(temp) - 1; j >= 0; j-- {
+                    stack = append(stack, temp[j])
+                }
+            }
+        default:
+            stack = append(stack, s[i])
 
-		}
-	}
-	return string(stack)
+        }
+    }
+    return string(stack)
 }
 ```
 
@@ -200,7 +196,7 @@ boolean DFS(int root, int target) {
 
 [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
 
-> 给定一个二叉树，返回它的*中序*遍历。
+> 给定一个二叉树，返回它的_中序_遍历。
 
 ```go
 // 思路：通过stack 保存已经访问的元素，用于原路返回
@@ -259,12 +255,11 @@ func clone(node *Node,visited map[*Node]*Node)*Node{
 
 [number-of-islands](https://leetcode-cn.com/problems/number-of-islands/)
 
-> 给定一个由  '1'（陆地）和 '0'（水）组成的的二维网格，计算岛屿的数量。一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
+> 给定一个由 '1'（陆地）和 '0'（水）组成的的二维网格，计算岛屿的数量。一个岛被水包围，并且它是通过水平方向或垂直方向上相邻的陆地连接而成的。你可以假设网格的四个边均被水包围。
 
 思路：通过深度搜索遍历可能性（注意标记已访问元素）
 
 ```go
-
 func numIslands(grid [][]byte) int {
     var count int
     for i:=0;i<len(grid);i++{
@@ -291,8 +286,7 @@ func dfs(grid [][]byte,i,j int)int{
 
 [largest-rectangle-in-histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
 
-> 给定 _n_ 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。
-> 求在该柱状图中，能够勾勒出来的矩形的最大面积。
+> 给定 _n_ 个非负整数，用来表示柱状图中各个柱子的高度。每个柱子彼此相邻，且宽度为 1 。 求在该柱状图中，能够勾勒出来的矩形的最大面积。
 
 思路：求以当前柱子为高度的面积，即转化为寻找小于当前值的左右两边值
 
@@ -304,41 +298,41 @@ func dfs(grid [][]byte,i,j int)int{
 
 ```go
 func largestRectangleArea(heights []int) int {
-	if len(heights) == 0 {
-		return 0
-	}
-	stack := make([]int, 0)
-	max := 0
-	for i := 0; i <= len(heights); i++ {
-		var cur int
-		if i == len(heights) {
-			cur = 0
-		} else {
-			cur = heights[i]
-		}
+    if len(heights) == 0 {
+        return 0
+    }
+    stack := make([]int, 0)
+    max := 0
+    for i := 0; i <= len(heights); i++ {
+        var cur int
+        if i == len(heights) {
+            cur = 0
+        } else {
+            cur = heights[i]
+        }
         // 当前高度小于栈，则将栈内元素都弹出计算面积
-		for len(stack) != 0 && cur <= heights[stack[len(stack)-1]] {
-			pop := stack[len(stack)-1]
-			stack = stack[:len(stack)-1]
-			h := heights[pop]
+        for len(stack) != 0 && cur <= heights[stack[len(stack)-1]] {
+            pop := stack[len(stack)-1]
+            stack = stack[:len(stack)-1]
+            h := heights[pop]
             // 计算宽度
-			w := i
-			if len(stack) != 0 {
-				peek := stack[len(stack)-1]
-				w = i - peek - 1
-			}
-			max = Max(max, h*w)
-		}
+            w := i
+            if len(stack) != 0 {
+                peek := stack[len(stack)-1]
+                w = i - peek - 1
+            }
+            max = Max(max, h*w)
+        }
         // 记录索引即可获取对应元素
-		stack = append(stack, i)
-	}
-	return max
+        stack = append(stack, i)
+    }
+    return max
 }
 func Max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
+    if a > b {
+        return a
+    }
+    return b
 }
 ```
 
@@ -458,8 +452,7 @@ func levelOrder(root *TreeNode) [][]int {
 
 [01-matrix](https://leetcode-cn.com/problems/01-matrix/)
 
-> 给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。
-> 两个相邻元素间的距离为 1
+> 给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。 两个相邻元素间的距离为 1
 
 ```go
 // BFS 从0进队列，弹出之后计算上下左右的结果，将上下左右重新进队列进行二层操作
@@ -512,20 +505,21 @@ func updateMatrix(matrix [][]int) [][]int {
 
 ## 总结
 
-- 熟悉栈的使用场景
-  - 后出先出，保存临时值
-  - 利用栈 DFS 深度搜索
-- 熟悉队列的使用场景
-  - 利用队列 BFS 广度搜索
+* 熟悉栈的使用场景
+  * 后出先出，保存临时值
+  * 利用栈 DFS 深度搜索
+* 熟悉队列的使用场景
+  * 利用队列 BFS 广度搜索
 
 ## 练习
 
-- [ ] [min-stack](https://leetcode-cn.com/problems/min-stack/)
-- [ ] [evaluate-reverse-polish-notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
-- [ ] [decode-string](https://leetcode-cn.com/problems/decode-string/)
-- [ ] [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
-- [ ] [clone-graph](https://leetcode-cn.com/problems/clone-graph/)
-- [ ] [number-of-islands](https://leetcode-cn.com/problems/number-of-islands/)
-- [ ] [largest-rectangle-in-histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
-- [ ] [implement-queue-using-stacks](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
-- [ ] [01-matrix](https://leetcode-cn.com/problems/01-matrix/)
+* [ ] [min-stack](https://leetcode-cn.com/problems/min-stack/)
+* [ ] [evaluate-reverse-polish-notation](https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/)
+* [ ] [decode-string](https://leetcode-cn.com/problems/decode-string/)
+* [ ] [binary-tree-inorder-traversal](https://leetcode-cn.com/problems/binary-tree-inorder-traversal/)
+* [ ] [clone-graph](https://leetcode-cn.com/problems/clone-graph/)
+* [ ] [number-of-islands](https://leetcode-cn.com/problems/number-of-islands/)
+* [ ] [largest-rectangle-in-histogram](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+* [ ] [implement-queue-using-stacks](https://leetcode-cn.com/problems/implement-queue-using-stacks/)
+* [ ] [01-matrix](https://leetcode-cn.com/problems/01-matrix/)
+

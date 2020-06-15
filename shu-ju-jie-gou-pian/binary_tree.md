@@ -4,14 +4,12 @@
 
 ### 二叉树遍历
 
-**前序遍历**：**先访问根节点**，再前序遍历左子树，再前序遍历右子树
-**中序遍历**：先中序遍历左子树，**再访问根节点**，再中序遍历右子树
-**后序遍历**：先后序遍历左子树，再后序遍历右子树，**再访问根节点**
+**前序遍历**：**先访问根节点**，再前序遍历左子树，再前序遍历右子树 **中序遍历**：先中序遍历左子树，**再访问根节点**，再中序遍历右子树 **后序遍历**：先后序遍历左子树，再后序遍历右子树，**再访问根节点**
 
 注意点
 
-- 以根访问顺序决定是什么遍历
-- 左子树都是优先右子树
+* 以根访问顺序决定是什么遍历
+* 左子树都是优先右子树
 
 #### 前序递归
 
@@ -84,37 +82,37 @@ func inorderTraversal(root *TreeNode) []int {
 
 ```go
 func postorderTraversal(root *TreeNode) []int {
-	// 通过lastVisit标识右子节点是否已经弹出
-	if root == nil {
-		return nil
-	}
-	result := make([]int, 0)
-	stack := make([]*TreeNode, 0)
-	var lastVisit *TreeNode
-	for root != nil || len(stack) != 0 {
-		for root != nil {
-			stack = append(stack, root)
-			root = root.Left
-		}
-		// 这里先看看，先不弹出
-		node:= stack[len(stack)-1]
-		// 根节点必须在右节点弹出之后，再弹出
-		if node.Right == nil || node.Right == lastVisit {
-			stack = stack[:len(stack)-1] // pop
-			result = append(result, node.Val)
-			// 标记当前这个节点已经弹出过
-			lastVisit = node
-		} else {
-			root = node.Right
-		}
-	}
-	return result
+    // 通过lastVisit标识右子节点是否已经弹出
+    if root == nil {
+        return nil
+    }
+    result := make([]int, 0)
+    stack := make([]*TreeNode, 0)
+    var lastVisit *TreeNode
+    for root != nil || len(stack) != 0 {
+        for root != nil {
+            stack = append(stack, root)
+            root = root.Left
+        }
+        // 这里先看看，先不弹出
+        node:= stack[len(stack)-1]
+        // 根节点必须在右节点弹出之后，再弹出
+        if node.Right == nil || node.Right == lastVisit {
+            stack = stack[:len(stack)-1] // pop
+            result = append(result, node.Val)
+            // 标记当前这个节点已经弹出过
+            lastVisit = node
+        } else {
+            root = node.Right
+        }
+    }
+    return result
 }
 ```
 
 注意点
 
-- 核心就是：根节点必须在右节点弹出之后，再弹出
+* 核心就是：根节点必须在右节点弹出之后，再弹出
 
 #### DFS 深度搜索-从上到下
 
@@ -211,15 +209,15 @@ func levelOrder(root *TreeNode) [][]int {
 
 适用场景
 
-- 快速排序
-- 归并排序
-- 二叉树相关问题
+* 快速排序
+* 归并排序
+* 二叉树相关问题
 
 分治法模板
 
-- 递归返回条件
-- 分段处理
-- 合并结果
+* 递归返回条件
+* 分段处理
+* 合并结果
 
 ```go
 func traversal(root *TreeNode) ResultType  {
@@ -264,7 +262,7 @@ func divideAndConquer(root *TreeNode) []int {
 }
 ```
 
-#### 归并排序  
+#### 归并排序
 
 ```go
 func MergeSort(nums []int) []int {
@@ -308,49 +306,48 @@ func merge(left, right []int) (result []int) {
 
 > 递归需要返回结果用于合并
 
-#### 快速排序  
+#### 快速排序
 
 ```go
 func QuickSort(nums []int) []int {
-	// 思路：把一个数组分为左右两段，左段小于右段，类似分治法没有合并过程
-	quickSort(nums, 0, len(nums)-1)
-	return nums
+    // 思路：把一个数组分为左右两段，左段小于右段，类似分治法没有合并过程
+    quickSort(nums, 0, len(nums)-1)
+    return nums
 
 }
 // 原地交换，所以传入交换索引
 func quickSort(nums []int, start, end int) {
-	if start < end {
+    if start < end {
         // 分治法：divide
-		pivot := partition(nums, start, end)
-		quickSort(nums, 0, pivot-1)
-		quickSort(nums, pivot+1, end)
-	}
+        pivot := partition(nums, start, end)
+        quickSort(nums, 0, pivot-1)
+        quickSort(nums, pivot+1, end)
+    }
 }
 // 分区
 func partition(nums []int, start, end int) int {
-	p := nums[end]
-	i := start
-	for j := start; j < end; j++ {
-		if nums[j] < p {
-			swap(nums, i, j)
-			i++
-		}
-	}
+    p := nums[end]
+    i := start
+    for j := start; j < end; j++ {
+        if nums[j] < p {
+            swap(nums, i, j)
+            i++
+        }
+    }
     // 把中间的值换为用于比较的基准值
-	swap(nums, i, end)
-	return i
+    swap(nums, i, end)
+    return i
 }
 func swap(nums []int, i, j int) {
-	t := nums[i]
-	nums[i] = nums[j]
-	nums[j] = t
+    t := nums[i]
+    nums[i] = nums[j]
+    nums[j] = t
 }
 ```
 
 注意点：
 
-> 快排由于是原地交换所以没有合并过程
-> 传入的索引是存在的索引（如：0、length-1 等），越界可能导致崩溃
+> 快排由于是原地交换所以没有合并过程 传入的索引是存在的索引（如：0、length-1 等），越界可能导致崩溃
 
 常见题目示例
 
@@ -386,9 +383,7 @@ func maxDepth(root *TreeNode) int {
 
 > 给定一个二叉树，判断它是否是高度平衡的二叉树。
 
-思路：分治法，左边平衡 && 右边平衡 && 左右两边高度 <= 1，
-因为需要返回是否平衡及高度，要么返回两个数据，要么合并两个数据，
-所以用-1 表示不平衡，>0 表示树高度（二义性：一个变量有两种含义）。
+思路：分治法，左边平衡 && 右边平衡 && 左右两边高度 &lt;= 1， 因为需要返回是否平衡及高度，要么返回两个数据，要么合并两个数据， 所以用-1 表示不平衡，&gt;0 表示树高度（二义性：一个变量有两种含义）。
 
 ```go
 func isBalanced(root *TreeNode) bool {
@@ -514,38 +509,38 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 
 [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
 
-> 给你一个二叉树，请你返回其按  **层序遍历**  得到的节点值。 （即逐层地，从左到右访问所有节点）
+> 给你一个二叉树，请你返回其按 **层序遍历** 得到的节点值。 （即逐层地，从左到右访问所有节点）
 
-思路：用一个队列记录一层的元素，然后扫描这一层元素添加下一层元素到队列（一个数进去出来一次，所以复杂度 O(logN)）
+思路：用一个队列记录一层的元素，然后扫描这一层元素添加下一层元素到队列（一个数进去出来一次，所以复杂度 O\(logN\)）
 
 ```go
 func levelOrder(root *TreeNode) [][]int {
-	result := make([][]int, 0)
-	if root == nil {
-		return result
-	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
-	for len(queue) > 0 {
-		list := make([]int, 0)
+    result := make([][]int, 0)
+    if root == nil {
+        return result
+    }
+    queue := make([]*TreeNode, 0)
+    queue = append(queue, root)
+    for len(queue) > 0 {
+        list := make([]int, 0)
         // 为什么要取length？
         // 记录当前层有多少元素（遍历当前层，再添加下一层）
-		l := len(queue)
-		for i := 0; i < l; i++ {
+        l := len(queue)
+        for i := 0; i < l; i++ {
             // 出队列
-			level := queue[0]
-			queue = queue[1:]
-			list = append(list, level.Val)
-			if level.Left != nil {
-				queue = append(queue, level.Left)
-			}
-			if level.Right != nil {
-				queue = append(queue, level.Right)
-			}
-		}
-		result = append(result, list)
-	}
-	return result
+            level := queue[0]
+            queue = queue[1:]
+            list = append(list, level.Val)
+            if level.Left != nil {
+                queue = append(queue, level.Left)
+            }
+            if level.Right != nil {
+                queue = append(queue, level.Right)
+            }
+        }
+        result = append(result, list)
+    }
+    return result
 }
 ```
 
@@ -565,37 +560,37 @@ func levelOrderBottom(root *TreeNode) [][]int {
     return result
 }
 func reverse(nums [][]int) {
-	for i, j := 0, len(nums)-1; i < j; i, j = i+1, j-1 {
-		nums[i], nums[j] = nums[j], nums[i]
-	}
+    for i, j := 0, len(nums)-1; i < j; i, j = i+1, j-1 {
+        nums[i], nums[j] = nums[j], nums[i]
+    }
 }
 func levelOrder(root *TreeNode) [][]int {
-	result := make([][]int, 0)
-	if root == nil {
-		return result
-	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
-	for len(queue) > 0 {
-		list := make([]int, 0)
+    result := make([][]int, 0)
+    if root == nil {
+        return result
+    }
+    queue := make([]*TreeNode, 0)
+    queue = append(queue, root)
+    for len(queue) > 0 {
+        list := make([]int, 0)
         // 为什么要取length？
         // 记录当前层有多少元素（遍历当前层，再添加下一层）
-		l := len(queue)
-		for i := 0; i < l; i++ {
+        l := len(queue)
+        for i := 0; i < l; i++ {
             // 出队列
-			level := queue[0]
-			queue = queue[1:]
-			list = append(list, level.Val)
-			if level.Left != nil {
-				queue = append(queue, level.Left)
-			}
-			if level.Right != nil {
-				queue = append(queue, level.Right)
-			}
-		}
-		result = append(result, list)
-	}
-	return result
+            level := queue[0]
+            queue = queue[1:]
+            list = append(list, level.Val)
+            if level.Left != nil {
+                queue = append(queue, level.Left)
+            }
+            if level.Right != nil {
+                queue = append(queue, level.Right)
+            }
+        }
+        result = append(result, list)
+    }
+    return result
 }
 ```
 
@@ -607,43 +602,43 @@ func levelOrder(root *TreeNode) [][]int {
 
 ```go
 func zigzagLevelOrder(root *TreeNode) [][]int {
-	result := make([][]int, 0)
-	if root == nil {
-		return result
-	}
-	queue := make([]*TreeNode, 0)
-	queue = append(queue, root)
-	toggle := false
-	for len(queue) > 0 {
-		list := make([]int, 0)
-		// 记录当前层有多少元素（遍历当前层，再添加下一层）
-		l := len(queue)
-		for i := 0; i < l; i++ {
-			// 出队列
-			level := queue[0]
-			queue = queue[1:]
-			list = append(list, level.Val)
-			if level.Left != nil {
-				queue = append(queue, level.Left)
-			}
-			if level.Right != nil {
-				queue = append(queue, level.Right)
-			}
-		}
-		if toggle {
-			reverse(list)
-		}
-		result = append(result, list)
-		toggle = !toggle
-	}
-	return result
+    result := make([][]int, 0)
+    if root == nil {
+        return result
+    }
+    queue := make([]*TreeNode, 0)
+    queue = append(queue, root)
+    toggle := false
+    for len(queue) > 0 {
+        list := make([]int, 0)
+        // 记录当前层有多少元素（遍历当前层，再添加下一层）
+        l := len(queue)
+        for i := 0; i < l; i++ {
+            // 出队列
+            level := queue[0]
+            queue = queue[1:]
+            list = append(list, level.Val)
+            if level.Left != nil {
+                queue = append(queue, level.Left)
+            }
+            if level.Right != nil {
+                queue = append(queue, level.Right)
+            }
+        }
+        if toggle {
+            reverse(list)
+        }
+        result = append(result, list)
+        toggle = !toggle
+    }
+    return result
 }
 func reverse(nums []int) {
-	for i := 0; i < len(nums)/2; i++ {
-		t := nums[i]
-		nums[i] = nums[len(nums)-1-i]
-		nums[len(nums)-1-i] = t
-	}
+    for i := 0; i < len(nums)/2; i++ {
+        t := nums[i]
+        nums[i] = nums[len(nums)-1-i]
+        nums[len(nums)-1-i] = t
+    }
 }
 ```
 
@@ -657,7 +652,7 @@ func reverse(nums []int) {
 
 思路 1：中序遍历，检查结果列表是否已经有序
 
-思路 2：分治法，判断左 MAX < 根 < 右 MIN
+思路 2：分治法，判断左 MAX &lt; 根 &lt; 右 MIN
 
 ```go
 // v1
@@ -681,63 +676,61 @@ func inOrder(root *TreeNode, result *[]int)  {
     *result = append(*result, root.Val)
     inOrder(root.Right, result)
 }
-
-
 ```
 
 ```go
 // v2分治法
 type ResultType struct {
-	IsValid bool
+    IsValid bool
     // 记录左右两边最大最小值，和根节点进行比较
-	Max     *TreeNode
-	Min     *TreeNode
+    Max     *TreeNode
+    Min     *TreeNode
 }
 
 func isValidBST2(root *TreeNode) bool {
-	result := helper(root)
-	return result.IsValid
+    result := helper(root)
+    return result.IsValid
 }
 func helper(root *TreeNode) ResultType {
-	result := ResultType{}
-	// check
-	if root == nil {
-		result.IsValid = true
-		return result
-	}
+    result := ResultType{}
+    // check
+    if root == nil {
+        result.IsValid = true
+        return result
+    }
 
-	left := helper(root.Left)
-	right := helper(root.Right)
+    left := helper(root.Left)
+    right := helper(root.Right)
 
-	if !left.IsValid || !right.IsValid {
-		result.IsValid = false
-		return result
-	}
-	if left.Max != nil && left.Max.Val >= root.Val {
-		result.IsValid = false
-		return result
-	}
-	if right.Min != nil && right.Min.Val <= root.Val {
-		result.IsValid = false
-		return result
-	}
+    if !left.IsValid || !right.IsValid {
+        result.IsValid = false
+        return result
+    }
+    if left.Max != nil && left.Max.Val >= root.Val {
+        result.IsValid = false
+        return result
+    }
+    if right.Min != nil && right.Min.Val <= root.Val {
+        result.IsValid = false
+        return result
+    }
 
-	result.IsValid = true
+    result.IsValid = true
     // 如果左边还有更小的3，就用更小的节点，不用4
     //  5
     // / \
     // 1   4
-    //      / \
-    //     3   6
-	result.Min = root
-	if left.Min != nil {
-		result.Min = left.Min
-	}
-	result.Max = root
-	if right.Max != nil {
-		result.Max = right.Max
-	}
-	return result
+    //      / \
+    //     3   6
+    result.Min = root
+    if left.Min != nil {
+        result.Min = left.Min
+    }
+    result.Max = root
+    if right.Max != nil {
+        result.Max = right.Max
+    }
+    return result
 }
 ```
 
@@ -767,18 +760,19 @@ func insertIntoBST(root *TreeNode, val int) *TreeNode {
 
 ## 总结
 
-- 掌握二叉树递归与非递归遍历
-- 理解 DFS 前序遍历与分治法
-- 理解 BFS 层次遍历
+* 掌握二叉树递归与非递归遍历
+* 理解 DFS 前序遍历与分治法
+* 理解 BFS 层次遍历
 
 ## 练习
 
-- [ ] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
-- [ ] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
-- [ ] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
-- [ ] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
-- [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
-- [ ] [binary-tree-level-order-traversal-ii](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
-- [ ] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
-- [ ] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
-- [ ] [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+* [ ] [maximum-depth-of-binary-tree](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+* [ ] [balanced-binary-tree](https://leetcode-cn.com/problems/balanced-binary-tree/)
+* [ ] [binary-tree-maximum-path-sum](https://leetcode-cn.com/problems/binary-tree-maximum-path-sum/)
+* [ ] [lowest-common-ancestor-of-a-binary-tree](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+* [ ] [binary-tree-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)
+* [ ] [binary-tree-level-order-traversal-ii](https://leetcode-cn.com/problems/binary-tree-level-order-traversal-ii/)
+* [ ] [binary-tree-zigzag-level-order-traversal](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/)
+* [ ] [validate-binary-search-tree](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+* [ ] [insert-into-a-binary-search-tree](https://leetcode-cn.com/problems/insert-into-a-binary-search-tree/)
+

@@ -4,14 +4,14 @@
 
 链表相关的核心点
 
-- null/nil 异常处理
-- dummy node 哑巴节点
-- 快慢指针
-- 插入一个节点到排序链表
-- 从一个链表中移除一个节点
-- 翻转链表
-- 合并两个链表
-- 找到链表的中间节点
+* null/nil 异常处理
+* dummy node 哑巴节点
+* 快慢指针
+* 插入一个节点到排序链表
+* 从一个链表中移除一个节点
+* 翻转链表
+* 合并两个链表
+* 找到链表的中间节点
 
 ## 常见题型
 
@@ -35,7 +35,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 
 ### [remove-duplicates-from-sorted-list-ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/)
 
-> 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中   没有重复出现的数字。
+> 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中 没有重复出现的数字。
 
 思路：链表头结点可能被删除，所以用 dummy node 辅助删除
 
@@ -64,10 +64,7 @@ func deleteDuplicates(head *ListNode) *ListNode {
 }
 ```
 
-注意点
-• A->B->C 删除 B，A.next = C
-• 删除用一个 Dummy Node 节点辅助（允许头节点可变）
-• 访问 X.next 、X.value 一定要保证 X != nil
+注意点 • A-&gt;B-&gt;C 删除 B，A.next = C • 删除用一个 Dummy Node 节点辅助（允许头节点可变） • 访问 X.next 、X.value 一定要保证 X != nil
 
 ### [reverse-linked-list](https://leetcode-cn.com/problems/reverse-linked-list/)
 
@@ -95,7 +92,7 @@ func reverseList(head *ListNode) *ListNode {
 
 ### [reverse-linked-list-ii](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
 
-> 反转从位置  *m*  到  *n*  的链表。请使用一趟扫描完成反转。
+> 反转从位置 _m_ 到 _n_ 的链表。请使用一趟扫描完成反转。
 
 思路：先遍历到 m 处，翻转，再拼接后续，注意指针处理
 
@@ -178,7 +175,7 @@ func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 
 ### [partition-list](https://leetcode-cn.com/problems/partition-list/)
 
-> 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于  *x*  的节点都在大于或等于  *x*  的节点之前。
+> 给定一个链表和一个特定值 x，对链表进行分隔，使得所有小于 _x_ 的节点都在大于或等于 _x_ 的节点之前。
 
 思路：将大于 x 的节点，放到另外一个链表，最后连接这两个链表
 
@@ -219,7 +216,7 @@ func partition(head *ListNode, x int) *ListNode {
 
 ### [sort-list](https://leetcode-cn.com/problems/sort-list/)
 
-> 在  *O*(*n* log *n*) 时间复杂度和常数级空间复杂度下，对链表进行排序。
+> 在 _O_\(_n_ log _n_\) 时间复杂度和常数级空间复杂度下，对链表进行排序。
 
 思路：归并排序，找中点和合并操作
 
@@ -285,14 +282,13 @@ func mergeSort(head *ListNode) *ListNode {
 
 注意点
 
-- 快慢指针 判断 fast 及 fast.Next 是否为 nil 值
-- 递归 mergeSort 需要断开中间节点
-- 递归返回条件为 head 为 nil 或者 head.Next 为 nil
+* 快慢指针 判断 fast 及 fast.Next 是否为 nil 值
+* 递归 mergeSort 需要断开中间节点
+* 递归返回条件为 head 为 nil 或者 head.Next 为 nil
 
 ### [reorder-list](https://leetcode-cn.com/problems/reorder-list/)
 
-> 给定一个单链表  *L*：*L*→*L*→…→*L\_\_n*→*L*
-> 将其重新排列后变为： *L*→*L\_\_n*→*L*→*L\_\_n*→*L*→*L\_\_n*→…
+> 给定一个单链表 _L_：_L_→_L_→…→_L\_\_n_→_L_ 将其重新排列后变为： _L_→_L\_\_n_→_L_→_L\_\_n_→_L_→_L\_\_n_→…
 
 思路：找到中点断开，翻转后面部分，然后合并前后两个链表
 
@@ -367,8 +363,7 @@ func reverseList(head *ListNode) *ListNode {
 
 > 给定一个链表，判断链表中是否有环。
 
-思路：快慢指针，快慢指针相同则有环，证明：如果有环每走一步快慢指针距离会减 1
-![fast_slow_linked_list](https://img.fuiboom.com/img/fast_slow_linked_list.png)
+思路：快慢指针，快慢指针相同则有环，证明：如果有环每走一步快慢指针距离会减 1 ![fast\_slow\_linked\_list](https://img.fuiboom.com/img/fast_slow_linked_list.png)
 
 ```go
 func hasCycle(head *ListNode) bool {
@@ -391,10 +386,9 @@ func hasCycle(head *ListNode) bool {
 
 ### [linked-list-cycle-ii](https://leetcode-cn.com/problems/https://leetcode-cn.com/problems/linked-list-cycle-ii/)
 
-> 给定一个链表，返回链表开始入环的第一个节点。  如果链表无环，则返回  `null`。
+> 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 `null`。
 
-思路：快慢指针，快慢相遇之后，慢指针回到头，快慢指针步调一致一起移动，相遇点即为入环点
-![cycled_linked_list](https://img.fuiboom.com/img/cycled_linked_list.png)
+思路：快慢指针，快慢相遇之后，慢指针回到头，快慢指针步调一致一起移动，相遇点即为入环点 ![cycled\_linked\_list](https://img.fuiboom.com/img/cycled_linked_list.png)
 
 ```go
 func detectCycle(head *ListNode) *ListNode {
@@ -426,8 +420,8 @@ func detectCycle(head *ListNode) *ListNode {
 
 坑点
 
-- 指针比较时直接比较对象，不要用值比较，链表中有可能存在重复值情况
-- 第一次相交后，快指针需要从下一个节点开始和头指针一起匀速移动
+* 指针比较时直接比较对象，不要用值比较，链表中有可能存在重复值情况
+* 第一次相交后，快指针需要从下一个节点开始和头指针一起匀速移动
 
 另外一种方式是 fast=head,slow=head
 
@@ -460,8 +454,8 @@ func detectCycle(head *ListNode) *ListNode {
 
 这两种方式不同点在于，**一般用 fast=head.Next 较多**，因为这样可以知道中点的上一个节点，可以用来删除等操作。
 
-- fast 如果初始化为 head.Next 则中点在 slow.Next
-- fast 初始化为 head,则中点在 slow
+* fast 如果初始化为 head.Next 则中点在 slow.Next
+* fast 初始化为 head,则中点在 slow
 
 ### [palindrome-linked-list](https://leetcode-cn.com/problems/palindrome-linked-list/)
 
@@ -516,44 +510,43 @@ func reverse(head *ListNode)*ListNode{
 
 ### [copy-list-with-random-pointer](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
 
-> 给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。
-> 要求返回这个链表的 深拷贝。
+> 给定一个链表，每个节点包含一个额外增加的随机指针，该指针可以指向链表中的任何节点或空节点。 要求返回这个链表的 深拷贝。
 
 思路：1、hash 表存储指针，2、复制节点跟在原节点后面
 
 ```go
 func copyRandomList(head *Node) *Node {
-	if head == nil {
-		return head
-	}
-	// 复制节点，紧挨到到后面
-	// 1->2->3  ==>  1->1'->2->2'->3->3'
-	cur := head
-	for cur != nil {
-		clone := &Node{Val: cur.Val, Next: cur.Next}
-		temp := cur.Next
-		cur.Next = clone
-		cur = temp
-	}
-	// 处理random指针
-	cur = head
-	for cur != nil {
-		if cur.Random != nil {
-			cur.Next.Random = cur.Random.Next
-		}
-		cur = cur.Next.Next
-	}
-	// 分离两个链表
-	cur = head
-	cloneHead := cur.Next
-	for cur != nil && cur.Next != nil {
-		temp := cur.Next
-		cur.Next = cur.Next.Next
-		cur = temp
-	}
-	// 原始链表头：head 1->2->3
-	// 克隆的链表头：cloneHead 1'->2'->3'
-	return cloneHead
+    if head == nil {
+        return head
+    }
+    // 复制节点，紧挨到到后面
+    // 1->2->3  ==>  1->1'->2->2'->3->3'
+    cur := head
+    for cur != nil {
+        clone := &Node{Val: cur.Val, Next: cur.Next}
+        temp := cur.Next
+        cur.Next = clone
+        cur = temp
+    }
+    // 处理random指针
+    cur = head
+    for cur != nil {
+        if cur.Random != nil {
+            cur.Next.Random = cur.Random.Next
+        }
+        cur = cur.Next.Next
+    }
+    // 分离两个链表
+    cur = head
+    cloneHead := cur.Next
+    for cur != nil && cur.Next != nil {
+        temp := cur.Next
+        cur.Next = cur.Next.Next
+        cur = temp
+    }
+    // 原始链表头：head 1->2->3
+    // 克隆的链表头：cloneHead 1'->2'->3'
+    return cloneHead
 }
 ```
 
@@ -561,26 +554,27 @@ func copyRandomList(head *Node) *Node {
 
 链表必须要掌握的一些点，通过下面练习题，基本大部分的链表类的题目都是手到擒来~
 
-- null/nil 异常处理
-- dummy node 哑巴节点
-- 快慢指针
-- 插入一个节点到排序链表
-- 从一个链表中移除一个节点
-- 翻转链表
-- 合并两个链表
-- 找到链表的中间节点
+* null/nil 异常处理
+* dummy node 哑巴节点
+* 快慢指针
+* 插入一个节点到排序链表
+* 从一个链表中移除一个节点
+* 翻转链表
+* 合并两个链表
+* 找到链表的中间节点
 
 ## 练习
 
-- [ ] [remove-duplicates-from-sorted-list](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
-- [ ] [remove-duplicates-from-sorted-list-ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/)
-- [ ] [reverse-linked-list](https://leetcode-cn.com/problems/reverse-linked-list/)
-- [ ] [reverse-linked-list-ii](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
-- [ ] [merge-two-sorted-lists](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
-- [ ] [partition-list](https://leetcode-cn.com/problems/partition-list/)
-- [ ] [sort-list](https://leetcode-cn.com/problems/sort-list/)
-- [ ] [reorder-list](https://leetcode-cn.com/problems/reorder-list/)
-- [ ] [linked-list-cycle](https://leetcode-cn.com/problems/linked-list-cycle/)
-- [ ] [linked-list-cycle-ii](https://leetcode-cn.com/problems/https://leetcode-cn.com/problems/linked-list-cycle-ii/)
-- [ ] [palindrome-linked-list](https://leetcode-cn.com/problems/palindrome-linked-list/)
-- [ ] [copy-list-with-random-pointer](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
+* [ ] [remove-duplicates-from-sorted-list](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list/)
+* [ ] [remove-duplicates-from-sorted-list-ii](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-list-ii/)
+* [ ] [reverse-linked-list](https://leetcode-cn.com/problems/reverse-linked-list/)
+* [ ] [reverse-linked-list-ii](https://leetcode-cn.com/problems/reverse-linked-list-ii/)
+* [ ] [merge-two-sorted-lists](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+* [ ] [partition-list](https://leetcode-cn.com/problems/partition-list/)
+* [ ] [sort-list](https://leetcode-cn.com/problems/sort-list/)
+* [ ] [reorder-list](https://leetcode-cn.com/problems/reorder-list/)
+* [ ] [linked-list-cycle](https://leetcode-cn.com/problems/linked-list-cycle/)
+* [ ] [linked-list-cycle-ii](https://leetcode-cn.com/problems/https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+* [ ] [palindrome-linked-list](https://leetcode-cn.com/problems/palindrome-linked-list/)
+* [ ] [copy-list-with-random-pointer](https://leetcode-cn.com/problems/copy-list-with-random-pointer/)
+
